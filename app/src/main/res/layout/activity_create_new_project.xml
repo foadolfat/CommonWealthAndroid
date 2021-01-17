@@ -102,4 +102,15 @@
         app:layout_constraintTop_toBottomOf="@+id/num_of_help"
         style="@style/TextviewStyle"
         />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="277dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="67dp"
+        android:layout_marginLeft="67dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/im1"
+        app:srcCompat="@drawable/commongreen" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

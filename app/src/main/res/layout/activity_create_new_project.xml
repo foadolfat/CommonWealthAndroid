@@ -111,6 +111,6 @@
         android:layout_marginLeft="67dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/im1"
-        app:srcCompat="@drawable/commongreen" />
+        app:srcCompat="@drawable/greenblacklogo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

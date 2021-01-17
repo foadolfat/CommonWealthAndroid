@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
+    <color name="purple_200">#b586d3</color>
+    <color name="purple_500">#b531d3</color>
+    <color name="purple_700">#c04483</color>
+    <color name="teal_200">#bfd433</color>
+    <color name="teal_700">#75821f</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <style name="TextviewStyle">
+        <item name="android:textColor">#FFFFFFFF</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowRadius">4</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+    </style>
+
 </resources>

@@ -72,7 +72,7 @@ public class CreateNewProject extends AppCompatActivity {
         project_hash.put(KEY_LOCATION, locationStr);
         project_hash.put(KEY_NUM_OF_HELP, numOfHelpersStr);
 
-        db.collection("Projects").document("First Test Project").set(project_hash)
+        db.collection("Projects").document("First Test Project").set(new_project)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

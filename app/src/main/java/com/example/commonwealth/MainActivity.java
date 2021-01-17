@@ -47,8 +47,10 @@ public class MainActivity extends AppCompatActivity {
                      @Override
                      public void onSuccess(DocumentSnapshot documentSnapshot) {
                         if(documentSnapshot.exists()){
-                            String project1 = documentSnapshot.getString("project_name");
-                            textView.setText(project1);
+                            //String project1 = documentSnapshot.getString("project_name");
+                            CWProject recieving = CWProject.getInstance();
+                            recieving = documentSnapshot.toObject(CWProject.class);
+                            textView.setText(recieving.getProjectName());
                         }else{
                             Toast.makeText(MainActivity.this, "Document does not exist", Toast.LENGTH_SHORT).show();
                         }
@@ -57,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-
+                        Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
                     }
                 });
 

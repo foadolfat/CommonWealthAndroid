@@ -8,9 +8,9 @@ public class CWProject {
     static int numOfHelpers;
     static int numOfHelpersAvailable;
     private static CWProject instance = null;
-    private CWProject(){
 
-    }
+    public CWProject(){}
+
 
     public static CWProject getInstance(){
         if (instance == null) {
@@ -34,4 +34,19 @@ public class CWProject {
         this.numOfHelpersAvailable = numOfHelpersAvailable + 1;
     }
 
+    public String getProjectName(){
+        return projectName;
+    }
+
+    public static String getName() {
+        return name;
+    }
+
+    public static String getLocation() {
+        return location;
+    }
+
+    public static int getNumOfHelpers() {
+        return numOfHelpers;
+    }
 }

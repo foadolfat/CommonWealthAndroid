@@ -2,22 +2,24 @@ package com.example.commonwealth;
 
 public class CWProject {
 
-    static String projectName;
-    static String name;
-    static String location;
-    static int numOfHelpers;
-    static int numOfHelpersAvailable;
-    private static CWProject instance = null;
+    private String projectName;
+    private String name;
+    private String location;
+    private int numOfHelpers;
+    private int numOfHelpersAvailable;
+    //private static CWProject instance = null;
 
     public CWProject(){}
 
-
+    /*
     public static CWProject getInstance(){
         if (instance == null) {
             instance = new CWProject();
         }
         return instance;
     }
+    */
+
     public void setName(String name){
         this.name = name;
     }
@@ -38,15 +40,16 @@ public class CWProject {
         return projectName;
     }
 
-    public static String getName() {
+    public String getName() {
         return name;
     }
 
-    public static String getLocation() {
+    public String getLocation() {
         return location;
     }
 
-    public static int getNumOfHelpers() {
+    public int getNumOfHelpers() {
         return numOfHelpers;
     }
+
 }

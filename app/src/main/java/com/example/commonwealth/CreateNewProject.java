@@ -51,7 +51,7 @@ public class CreateNewProject extends AppCompatActivity {
         });
     }
     public void createProject(){
-        new_project = CWProject.getInstance();
+        new_project = new CWProject();
         new_project.setProjectName(projectName.getText().toString());
         new_project.setName(name.getText().toString());
         new_project.setLocation(location.getText().toString());
@@ -72,7 +72,7 @@ public class CreateNewProject extends AppCompatActivity {
         project_hash.put(KEY_LOCATION, locationStr);
         project_hash.put(KEY_NUM_OF_HELP, numOfHelpersStr);
 
-        db.collection("Projects").document("First Test Project").set(new_project)
+        db.collection("Projects").document(nameStr).set(new_project)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -92,10 +92,12 @@ public class CreateNewProject extends AppCompatActivity {
         System.out.println("Name of owner is " + new_project.name);
         System.out.println("Address of project is " + new_project.location);
         System.out.println("Number of required helpers is " + new_project.numOfHelpers);
-        */
+
         showToast(new_project.projectName);
         showToast(new_project.name);
         showToast(new_project.location);
+
+         */
     }
     private void showToast(String text){
         Toast.makeText(CreateNewProject.this,text, Toast.LENGTH_SHORT).show();

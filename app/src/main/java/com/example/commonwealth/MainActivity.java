@@ -20,6 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class MainActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private Button button;
+    private Button search;
     private FirebaseAuth mAuth;
 
     TextView textView;
@@ -28,46 +29,41 @@ public class MainActivity extends AppCompatActivity {
     TextView textView4;
     TextView textView5;
 
+    EditText search_docs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+
         mAuth = FirebaseAuth.getInstance();
-        button = findViewById(R.id.button);
+        search = findViewById(R.id.button3);
         textView = findViewById(R.id.textView);
         textView2 = findViewById(R.id.textView2);
         textView3 = findViewById(R.id.textView3);
         textView4 = findViewById(R.id.textView4);
         textView5 = findViewById(R.id.textView5);
+        search_docs = findViewById(R.id.search_docs);
 
 
 
-        db.collection("Projects").document("First Test Project").get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                     @Override
-                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        if(documentSnapshot.exists()){
-                            //String project1 = documentSnapshot.getString("project_name");
-                            CWProject recieving = CWProject.getInstance();
-                            recieving = documentSnapshot.toObject(CWProject.class);
-                            textView.setText(recieving.getProjectName());
-                        }else{
-                            Toast.makeText(MainActivity.this, "Document does not exist", Toast.LENGTH_SHORT).show();
-                        }
-                     }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
-                    }
-                });
 
 
+        button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
               Add_project();
+            }
+        });
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                search_docs();
             }
         });
     }
@@ -75,6 +71,32 @@ public class MainActivity extends AppCompatActivity {
     public void Add_project() {
         Intent intent = new Intent(this, CreateNewProject.class);
         startActivity(intent);
+    }
+
+    public void search_docs(){
+        db.collection("Projects").document(search_docs.getText().toString()).get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if(documentSnapshot.exists()){
+                            //String project1 = documentSnapshot.getString("project_name");
+                            CWProject recieving = new CWProject();
+                            recieving = documentSnapshot.toObject(CWProject.class);
+                            textView.setText(recieving.getProjectName());
+                            textView2.setText(recieving.getName());
+                            textView3.setText(recieving.getLocation());
+                            //textView4.setText(recieving.getNumOfHelpers());
+                        }else{
+                            Toast.makeText(MainActivity.this, "Document does not exist", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
 }

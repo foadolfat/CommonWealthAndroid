@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1059571912904",
+    "project_id": "commonwealth-13480",
+    "storage_bucket": "commonwealth-13480.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1059571912904:android:9669089feae9fae13655fd",
+        "android_client_info": {
+          "package_name": "com.example.commonwealth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1059571912904-blbigsquvboqf1bjgmi662l0lc408nor.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-hMmZepyOOxgTOda6Ev6PSGnveuE3jnw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1059571912904-blbigsquvboqf1bjgmi662l0lc408nor.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -19,22 +19,24 @@
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="150dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:layout_marginBottom="32dp"
         android:text="@string/Add_project"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/location"
-        app:layout_constraintVertical_bias="0.642" />
+        app:layout_constraintStart_toStartOf="parent" />
+
 
     <EditText
         android:id="@+id/project_name"
-        android:layout_width="360dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="100dp"
+        style="@style/TextviewStyle"
+        android:layout_width="365dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         android:layout_marginBottom="32dp"
         android:ems="10"
         android:hint="Enter a name for your project"
@@ -42,18 +44,19 @@
         android:text="@string/project_name"
         app:layout_constraintBottom_toTopOf="@+id/name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        style="@style/TextviewStyle"
-        />
-
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/name"
+        style="@style/TextviewStyle"
         android:layout_width="366dp"
         android:layout_height="43dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         android:layout_marginBottom="32dp"
         android:ems="10"
         android:hint="What is your name?"
@@ -61,17 +64,18 @@
         android:text="@string/name"
         app:layout_constraintBottom_toTopOf="@+id/num_of_help"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/project_name"
-        style="@style/TextviewStyle"
-        />
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/num_of_help"
+        style="@style/TextviewStyle"
         android:layout_width="367dp"
         android:layout_height="45dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         android:layout_marginBottom="32dp"
         android:ems="10"
         android:hint="How many people does your project need?"
@@ -79,17 +83,18 @@
         android:text="@string/num_of_help"
         app:layout_constraintBottom_toTopOf="@+id/location"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name"
-        style="@style/TextviewStyle"
-        />
+        app:layout_constraintHorizontal_bias="0.55"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/location"
+        style="@style/TextviewStyle"
         android:layout_width="365dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="32dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         android:layout_marginBottom="32dp"
         android:ems="10"
         android:hint="Where is the project located?"
@@ -97,11 +102,8 @@
         android:text="@string/location"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/num_of_help"
-        style="@style/TextviewStyle"
-        />
+        app:layout_constraintHorizontal_bias="0.543"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView3"

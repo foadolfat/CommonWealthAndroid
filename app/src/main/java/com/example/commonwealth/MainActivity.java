@@ -21,6 +21,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static final String EXTRA_SEARCH_TERM = "com.example.commonwealth.SEARCH_TERM";
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private Button button;
     private Button search;
@@ -42,8 +44,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -92,10 +92,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                search_docs();
+                search_docs(search_docs.getText().toString());
+
             }
         });
     }
@@ -105,7 +107,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void search_docs(){
+    public void search_docs(String searchTerm){
+
+        Intent intent = new Intent(this, ViewProject.class);
+        intent.putExtra(EXTRA_SEARCH_TERM, searchTerm);
+        startActivity(intent);
+        /*
         db.collection("Projects").whereEqualTo("projectName", search_docs.getText().toString())
                 //.document(search_docs.getText()
                 //.toString())
@@ -132,6 +139,8 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+         */
     }
 
 }

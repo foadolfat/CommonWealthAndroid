@@ -5,20 +5,15 @@ public class CWProject {
     private String projectName;
     private String name;
     private String location;
+    private double lat;
+    private double lng;
     private int numOfHelpers;
     private int numOfHelpersAvailable;
-    //private static CWProject instance = null;
+
 
     public CWProject(){}
 
-    /*
-    public static CWProject getInstance(){
-        if (instance == null) {
-            instance = new CWProject();
-        }
-        return instance;
-    }
-    */
+
 
     public void setName(String name){
         this.name = name;
@@ -34,6 +29,14 @@ public class CWProject {
     }
     public void addToHelpers(){
         this.numOfHelpersAvailable = numOfHelpersAvailable + 1;
+    }
+    public void setLatLng(String latLng){
+        latLng = latLng.replaceAll("lat/lng: ","");
+        latLng = latLng.replaceAll("[()]", "");
+        String[] latLngSplit = latLng.split(",");
+        this.lat = Double.parseDouble(latLngSplit[0]);
+        this.lng = Double.parseDouble(latLngSplit[1]);
+
     }
 
     public String getProjectName(){
@@ -52,4 +55,11 @@ public class CWProject {
         return numOfHelpers;
     }
 
+    public double getLat() {
+        return lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
 }

@@ -1,20 +1,34 @@
 package com.example.commonwealth;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.AutocompleteActivity;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
+import com.google.firebase.database.annotations.NotNull;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CreateNewProject extends AppCompatActivity {
@@ -24,13 +38,8 @@ public class CreateNewProject extends AppCompatActivity {
     EditText location;
     EditText numOfHelpers;
     CWProject new_project;
+    private String latlng = "";
 
-
-    //Firerstore initial test
-    private static final String KEY_PROJECT_NAME = "project_name";
-    private static final String KEY_NAME = "name";
-    private static final String KEY_LOCATION = "location";
-    private static final String KEY_NUM_OF_HELP = "num_of_help";
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
@@ -43,34 +52,41 @@ public class CreateNewProject extends AppCompatActivity {
         name = (EditText) findViewById(R.id.name);
         location = (EditText) findViewById(R.id.location);
         numOfHelpers = (EditText) findViewById(R.id.num_of_help);
+        location.setFocusable(false);
+        Places.initialize(getApplicationContext(), "AIzaSyCkBBUzJ5XLH3gkDAocLHbBJGHhMnnAe0o");
+
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 createProject();
             }
         });
+        location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<Place.Field> fieldList = Arrays.asList(Place.Field.ADDRESS
+                        ,Place.Field.LAT_LNG,Place.Field.NAME);
+
+                Intent intent2 = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY
+                        ,fieldList).build(CreateNewProject.this);
+
+                startActivityForResult(intent2,100);
+            }
+        });
     }
     public void createProject(){
+
+        String nameStr = name.getText().toString();
+
         new_project = new CWProject();
         new_project.setProjectName(projectName.getText().toString());
         new_project.setName(name.getText().toString());
         new_project.setLocation(location.getText().toString());
+        new_project.setLatLng(latlng);
         new_project.setNumOfHelpers(Integer.valueOf(numOfHelpers.getText().toString()));
-        //print_object();
 
 
-
-       //Firerstore initial test
-        String projectNameStr = projectName.getText().toString();
-        String nameStr = name.getText().toString();
-        String locationStr = location.getText().toString();
-        String numOfHelpersStr = numOfHelpers.getText().toString();
-
-        Map<String,Object> project_hash = new HashMap<>();
-        project_hash.put(KEY_PROJECT_NAME, projectNameStr);
-        project_hash.put(KEY_NAME, nameStr);
-        project_hash.put(KEY_LOCATION, locationStr);
-        project_hash.put(KEY_NUM_OF_HELP, numOfHelpersStr);
 
         db.collection("Projects").document(nameStr).set(new_project)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -85,21 +101,28 @@ public class CreateNewProject extends AppCompatActivity {
                         Toast.makeText(CreateNewProject.this, "Error!", Toast.LENGTH_SHORT).show();
                     }
                 });
-    }
-    public void print_object(){
-        /*
-        System.out.println("Name of project is " + new_project.projectName);
-        System.out.println("Name of owner is " + new_project.name);
-        System.out.println("Address of project is " + new_project.location);
-        System.out.println("Number of required helpers is " + new_project.numOfHelpers);
 
-        showToast(new_project.projectName);
-        showToast(new_project.name);
-        showToast(new_project.location);
+    }
 
-         */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 100){
+
+            Place place = Autocomplete.getPlaceFromIntent(data);
+            location.setText(place.getAddress());
+            latlng = String.valueOf(place.getLatLng());
+
+        }
+        else if(resultCode == AutocompleteActivity.RESULT_ERROR){
+            Status status = Autocomplete.getStatusFromIntent(data);
+
+            Toast.makeText(getApplicationContext(),status.getStatusMessage()
+            ,Toast.LENGTH_SHORT).show();
+        }
+
     }
-    private void showToast(String text){
-        Toast.makeText(CreateNewProject.this,text, Toast.LENGTH_SHORT).show();
-    }
+
+
 }

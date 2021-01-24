@@ -29,13 +29,6 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     TextView[] textView= new TextView[5];
-    /*
-    TextView textView;
-    TextView textView2;
-    TextView textView3;
-    TextView textView4;
-    TextView textView5;
-     */
 
 
     EditText search_docs;
@@ -58,8 +51,6 @@ public class MainActivity extends AppCompatActivity {
         db.collection("Projects").whereGreaterThan("numOfHelpers", 1)
                 .orderBy("numOfHelpers", Query.Direction.DESCENDING)
                 .limit(5)
-                //.document(search_docs.getText()
-                //.toString())
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -72,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
                             i++;
                         }
 
-                        //textView4.setText(recieving.getNumOfHelpers());
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -112,64 +102,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ViewProject.class);
         intent.putExtra(EXTRA_SEARCH_TERM, searchTerm);
         startActivity(intent);
-        /*
-        db.collection("Projects").whereEqualTo("projectName", search_docs.getText().toString())
-                //.document(search_docs.getText()
-                //.toString())
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
-                            CWProject recieving = new CWProject();
-                            recieving = documentSnapshot.toObject(CWProject.class);
-                            textView[0].setText(recieving.getProjectName());
-                            textView[1].setText(recieving.getName());
-                            textView[2].setText(recieving.getLocation());
-                            textView[3].setText("" + recieving.getNumOfHelpers());
-                            textView[4].setText("");
-                        }
 
-                        //textView4.setText(recieving.getNumOfHelpers());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-         */
     }
 
 }
 
 
-/*
-db.collection("Projects")
-                .document(search_docs.getText().toString())
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        if(documentSnapshot.exists()){
-                            //String project1 = documentSnapshot.getString("project_name");
-                            CWProject recieving = new CWProject();
-                            recieving = documentSnapshot.toObject(CWProject.class);
-                            textView.setText(recieving.getProjectName());
-                            textView2.setText(recieving.getName());
-                            textView3.setText(recieving.getLocation());
-                            //textView4.setText(recieving.getNumOfHelpers());
-                        }else{
-                            Toast.makeText(MainActivity.this, "Document does not exist", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
-                    }
-                });
- */

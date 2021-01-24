@@ -11,4 +11,5 @@
     <string name="location"></string>
     <string name="name"></string>
     <string name="search_docs">Enter search term</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

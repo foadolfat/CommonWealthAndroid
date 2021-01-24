@@ -46,7 +46,7 @@ public class CreateNewProject extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_project);
-        Intent intent = getIntent();
+        //Intent intent = getIntent();
         button = findViewById(R.id.button2);
         projectName = (EditText) findViewById(R.id.project_name);
         name = (EditText) findViewById(R.id.name);
